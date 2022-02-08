@@ -35,6 +35,9 @@ class Student:
         print('Завершенные курсы: ', end='')
         print(', '.join(self.finished_course))
 
+    def __lt__(self, other):
+        return avg(self.grades)<avg(other.grades)
+
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
@@ -64,6 +67,9 @@ class Lecturer(Mentor):
     def __str__(self):
         print(f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {avg(self.grades)}')
 
+    def __lt__(self, other):
+        return avg(self.grades)<avg(other.grades)
+
 class Reviewer(Mentor):
     def __init__(self, name, surname):
         self.name = name
@@ -79,12 +85,21 @@ best_student.courses_in_progress += ['Python']
 best_student.courses_in_progress += ['Java']
 best_student.finished_course += ['Введение в программирование']
 
+worst_student = Student('Ruoy', 'Eman', 'your_gender')
+worst_student.courses_in_progress += ['Python']
+worst_student.courses_in_progress += ['Java']
+worst_student.finished_course += ['Введение в программирование']
+
 cool_reviewer = Reviewer('Some', 'Buddy')
 cool_reviewer.courses_attached += ['Python']
 
 cool_reviewer.rate_hw(best_student, 'Python', 10)
+cool_reviewer.rate_hw(best_student, 'Java', 10)
 cool_reviewer.rate_hw(best_student, 'Python', 10)
-cool_reviewer.rate_hw(best_student, 'Python', 10)
+
+cool_reviewer.rate_hw(worst_student, 'Python', 1)
+cool_reviewer.rate_hw(worst_student, 'Python', 5)
+cool_reviewer.rate_hw(worst_student, 'Java', 7)
 
 cool_lecturer = Lecturer('Peeta', 'Paka')
 cool_lecturer.courses_attached += ['Python']
@@ -92,10 +107,18 @@ best_student.rate_lecture(cool_lecturer, 'Python', 7)
 best_student.rate_lecture(cool_lecturer, 'Python', 3)
 best_student.rate_lecture(cool_lecturer, 'Java', 5)
 
+fool_lecturer = Lecturer('Peeta', 'Paka')
+fool_lecturer.courses_attached += ['Python']
+best_student.rate_lecture(fool_lecturer, 'Python', 4)
+best_student.rate_lecture(fool_lecturer, 'Python', 3)
+best_student.rate_lecture(fool_lecturer, 'Java', 5)
+
 # # print(best_student.grades)
 # print(cool_lecturer.grades)
 # cool_lecturer.rate_hw()
 
-print(cool_reviewer)
-print(cool_lecturer)
-print(best_student)
+# print(cool_reviewer)
+# print(cool_lecturer)
+# print(best_student)
+print(cool_lecturer>fool_lecturer)
+print(best_student>worst_student)
