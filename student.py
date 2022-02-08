@@ -49,11 +49,17 @@ class Lecturer(Mentor):
 
 
 class Reviewer(Mentor):
-    pass
+    def __init__(self, name, surname):
+        self.name = name
+        self.surname = surname
+        self.courses_attached = []
+
+    def __str__(self):
+        print(f'Имя: {self.name}\nФамилия: {self.surname}')
 
 
-best_student = Student('Ruoy', 'Eman', 'your_gender')
-best_student.courses_in_progress += ['Python']
+# best_student = Student('Ruoy', 'Eman', 'your_gender')
+# best_student.courses_in_progress += ['Python']
 
 # cool_mentor = Mentor('Some', 'Buddy')
 # cool_mentor.courses_attached += ['Python']
@@ -62,10 +68,13 @@ best_student.courses_in_progress += ['Python']
 # cool_mentor.rate_hw(best_student, 'Python', 10)
 # cool_mentor.rate_hw(best_student, 'Python', 10)
 
-cool_lecturer = Lecturer('Peeta', 'Paka')
-cool_lecturer.courses_attached += ['Python']
-best_student.rate_lecture(cool_lecturer, 'Python', 7)
+# cool_lecturer = Lecturer('Peeta', 'Paka')
+# cool_lecturer.courses_attached += ['Python']
+# best_student.rate_lecture(cool_lecturer, 'Python', 7)
+#
+# # print(best_student.grades)
+# print(cool_lecturer.grades)
+# cool_lecturer.rate_hw()
 
-# print(best_student.grades)
-print(cool_lecturer.grades)
-cool_lecturer.rate_hw()
+some_reviewer = Reviewer('Bo', 'Bobkinson')
+print(some_reviewer)
