@@ -28,6 +28,12 @@ class Student:
         else:
             return 'Ошибка'
 
+    def __str__(self):
+        print(f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {avg(self.grades)}')
+        print('Курсы в процессе изучения: ', end='')
+        print(', '.join(self.courses_in_progress))
+        print('Завершенные курсы: ', end='')
+        print(', '.join(self.finished_course))
 
 class Mentor:
     def __init__(self, name, surname):
@@ -70,13 +76,15 @@ class Reviewer(Mentor):
 
 best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python']
+best_student.courses_in_progress += ['Java']
+best_student.finished_course += ['Введение в программирование']
 
-# cool_mentor = Mentor('Some', 'Buddy')
-# cool_mentor.courses_attached += ['Python']
+cool_reviewer = Reviewer('Some', 'Buddy')
+cool_reviewer.courses_attached += ['Python']
 
-# cool_mentor.rate_hw(best_student, 'Python', 10)
-# cool_mentor.rate_hw(best_student, 'Python', 10)
-# cool_mentor.rate_hw(best_student, 'Python', 10)
+cool_reviewer.rate_hw(best_student, 'Python', 10)
+cool_reviewer.rate_hw(best_student, 'Python', 10)
+cool_reviewer.rate_hw(best_student, 'Python', 10)
 
 cool_lecturer = Lecturer('Peeta', 'Paka')
 cool_lecturer.courses_attached += ['Python']
@@ -88,8 +96,6 @@ best_student.rate_lecture(cool_lecturer, 'Java', 5)
 # print(cool_lecturer.grades)
 # cool_lecturer.rate_hw()
 
-# some_reviewer = Reviewer('Bo', 'Bobkinson')
-# print(some_reviewer)
-
-# print(dict.values(cool_lecturer.grades))
+print(cool_reviewer)
 print(cool_lecturer)
+print(best_student)
